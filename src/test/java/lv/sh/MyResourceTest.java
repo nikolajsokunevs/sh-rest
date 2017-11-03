@@ -4,6 +4,7 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 
+import lv.sh.beans.Device;
 import org.glassfish.grizzly.http.server.HttpServer;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
@@ -30,7 +31,7 @@ public class MyResourceTest {
 
     @Test
     public void testGetIt() {
-        String responseMsg = target.path("myresource").request().get(String.class);
+        Device responseMsg = target.path("myresource").request().get(Device.class);
         Assertions.assertEquals("Got it!", responseMsg);
     }
 }

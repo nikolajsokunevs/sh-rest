@@ -12,7 +12,7 @@ public class Main {
     public static final String BASE_URI = "http://localhost:8080/myapp/";
 
     public static HttpServer startServer() {
-        final ResourceConfig rc = new ResourceConfig().packages("com.example");
+        final ResourceConfig rc = new ResourceConfig().packages("lv.sh");
 
         return GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);
     }
