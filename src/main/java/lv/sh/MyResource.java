@@ -1,17 +1,15 @@
 package lv.sh;
 
-
 import com.fasterxml.jackson.databind.ObjectMapper;
-import jdk.internal.org.objectweb.asm.TypeReference;
 import lv.sh.beans.Device;
+import lv.sh.service.DeviceServiceImpl;
+import lv.sh.service.IDeviceService;
 
 import javax.ws.rs.GET;
+import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import java.io.IOException;
-import java.util.List;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Path("light")
 public class MyResource {
@@ -32,5 +30,16 @@ public class MyResource {
         }
 
         return myObjects;
+    }
+
+    @POST
+    @Path("post")
+    @Produces("application/json")
+    public String post(){
+
+        IDeviceService deviceService=new DeviceServiceImpl();
+        deviceService.addBird(new Device());
+
+        return "DONE";
     }
 }
