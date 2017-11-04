@@ -1,6 +1,6 @@
 package lv.sh.service;
 
-import lv.sh.beans.Device;
+import lv.sh.models.Device;
 
 public interface IDeviceService {
 

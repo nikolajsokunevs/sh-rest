@@ -1,7 +1,7 @@
 package lv.sh;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lv.sh.beans.Device;
+import lv.sh.models.Device;
 import lv.sh.service.DeviceServiceImpl;
 import lv.sh.service.IDeviceService;
 
@@ -36,10 +36,8 @@ public class MyResource {
     @Path("post")
     @Produces("application/json")
     public String post(){
-
         IDeviceService deviceService=new DeviceServiceImpl();
         deviceService.addBird(new Device());
-
         return "DONE";
     }
 }

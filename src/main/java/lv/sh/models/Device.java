@@ -1,4 +1,4 @@
-package lv.sh.beans;
+package lv.sh.models;
 
 import java.util.List;
 
