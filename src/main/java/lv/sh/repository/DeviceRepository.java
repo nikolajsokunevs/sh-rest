@@ -5,19 +5,29 @@ import com.mongodb.DBCollection;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoURI;
 import lv.sh.beans.Device;
+import lv.sh.config.ApplicationProperties;
 import lv.sh.utils.AppUtils;
+
+import static lv.sh.config.ApplicationProperties.getString;
 
 public class DeviceRepository {
 
     private MongoClient client;
     private DBCollection deviceCollection;
-    private String dbName;
+
+    private static String HOST=getString(ApplicationProperties.ApplicationProperty.DB_HOST);
+    private static String PORT=getString(ApplicationProperties.ApplicationProperty.DB_PORT);
+    private static String DB_NAME= getString(ApplicationProperties.ApplicationProperty.DB_NAME);
+
+    private static String USER= getString(ApplicationProperties.ApplicationProperty.DB_NAME);
+    private static String PASSWORD= getString(ApplicationProperties.ApplicationProperty.DB_NAME);
+
     private String collectionName;
     private DBCollection table;
 
     public DeviceRepository() {
 
-        
+
         String uriString = "mongodb://user1:user1@ds249025.mlab.com:49025/sh";
         MongoURI uri = new MongoURI(uriString);
 
