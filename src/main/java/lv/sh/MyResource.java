@@ -14,8 +14,6 @@ import java.io.IOException;
 @Path("light")
 public class MyResource {
 
-
-
     @GET
     @Produces("application/json")
     public Device[] getAll(){
@@ -37,7 +35,7 @@ public class MyResource {
     @Produces("application/json")
     public String post(){
         IDeviceService deviceService=new DeviceServiceImpl();
-        deviceService.addBird(new Device());
+        deviceService.addDevice(new Device());
         return "DONE";
     }
 }

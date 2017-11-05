@@ -5,10 +5,10 @@ import lv.sh.repository.DeviceRepository;
 
 public class DeviceServiceImpl implements IDeviceService {
 
-    private DeviceRepository deviceRepository;
+    private DeviceRepository deviceRepository=new DeviceRepository();
 
     @Override
-    public Device addBird(Device device) {
+    public Device addDevice(Device device) {
         deviceRepository=new DeviceRepository();
         deviceRepository.insert(device);
         return null;

@@ -9,5 +9,5 @@ public interface IDeviceService {
      * @param device
      * @return
      */
-    public Device addBird(Device device);
+    public Device addDevice(Device device);
 }
