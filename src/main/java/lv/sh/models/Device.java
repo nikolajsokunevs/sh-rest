@@ -4,7 +4,7 @@ import java.util.List;
 
 public class Device {
 
-    private Integer id = 0005;
+    private String id;
     private String deviceName;
     private String room;
     private String status;
@@ -12,11 +12,11 @@ public class Device {
     private double percentage;
     private List<Device> relatedDevices;
 
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(String id) {
         this.id = id;
     }
 

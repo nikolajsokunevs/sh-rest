@@ -12,7 +12,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 
-public class MyResourceTest {
+public class DeviceResourceTest {
 
     private static HttpServer server;
     private static WebTarget target;

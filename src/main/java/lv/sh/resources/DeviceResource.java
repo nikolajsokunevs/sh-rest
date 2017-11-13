@@ -1,6 +1,7 @@
-package lv.sh;
+package lv.sh.resources;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lv.sh.DataProvider;
 import lv.sh.models.Device;
 import lv.sh.service.DeviceServiceImpl;
 import lv.sh.service.IDeviceService;
@@ -11,27 +12,23 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import java.io.IOException;
 
-@Path("light")
-public class MyResource {
+@Path("device")
+public class DeviceResource {
 
     @GET
+    @Path("all")
     @Produces("application/json")
     public Device[] getAll(){
-        String t=DataProvider.readFromFile("devicies.json");
+        String t= DataProvider.readFromFile("devicies.json");
         ObjectMapper mapper = new ObjectMapper();
         Device[] myObjects={};
-        try {
-            myObjects = mapper.readValue(t, Device[].class);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        IDeviceService deviceService=new DeviceServiceImpl();
+        myObjects=deviceService.getAllDevices();
         return myObjects;
     }
 
     @POST
-    @Path("post")
+    @Path("add")
     @Produces("application/json")
     public String post(){
         IDeviceService deviceService=new DeviceServiceImpl();

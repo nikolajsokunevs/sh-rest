@@ -10,4 +10,5 @@ public interface IDeviceService {
      * @return
      */
     public Device addDevice(Device device);
+    public Device[] getAllDevices();
 }
