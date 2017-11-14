@@ -1,6 +1,8 @@
-package lv.sh.service;
+package lv.sh.service.device;
 
 import lv.sh.models.Device;
+
+import java.util.List;
 
 public interface IDeviceService {
 
@@ -10,5 +12,5 @@ public interface IDeviceService {
      * @return
      */
     public Device addDevice(Device device);
-    public Device[] getAllDevices();
+    public List<Device> getAllDevices();
 }

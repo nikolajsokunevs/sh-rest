@@ -1,15 +1,14 @@
 package lv.sh.repository;
 
-import com.mongodb.BasicDBObject;
 import com.mongodb.MongoClient;
-import com.mongodb.MongoClientOptions;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import lv.sh.models.Device;
 import lv.sh.config.ApplicationProperties;
-import lv.sh.models.DeviceCodec;
-import lv.sh.utils.AppUtils;
+import lv.sh.models.Room;
+import lv.sh.repository.codecs.DeviceCodec;
+import lv.sh.repository.codecs.RoomCodec;
 import org.bson.Document;
 import org.bson.codecs.Codec;
 import org.bson.codecs.configuration.CodecRegistries;
@@ -36,17 +35,18 @@ public class DeviceRepository {
 
     private MongoDatabase db;
 
-    private CodecRegistry codecDeviceRegistry;
+    private CodecRegistry codecRegistry;
 
     private DeviceRepository() {
 
         Codec<Document> defaultDocumentCodec = MongoClient.getDefaultCodecRegistry().get(Document.class);
         DeviceCodec deviceCodec = new DeviceCodec(defaultDocumentCodec);
-        codecDeviceRegistry = CodecRegistries.fromRegistries(MongoClient.getDefaultCodecRegistry(), CodecRegistries.fromCodecs(deviceCodec));
+        RoomCodec roomCodec = new RoomCodec(defaultDocumentCodec);
+        codecRegistry = CodecRegistries.fromRegistries(MongoClient.getDefaultCodecRegistry(), CodecRegistries.fromCodecs(deviceCodec), CodecRegistries.fromCodecs(roomCodec));
 
         MongoClientURI uri = new MongoClientURI(getConnectionURL());
         MongoClient mongoClient = new MongoClient(uri);
-        db = mongoClient.getDatabase(DB_NAME);
+        db = mongoClient.getDatabase(DB_NAME).withCodecRegistry(codecRegistry);
     }
 
     public static DeviceRepository getInstance() {
@@ -60,14 +60,25 @@ public class DeviceRepository {
         return url;
     }
 
-    public void insert(Device device) {
-        MongoCollection<Device> collection = db.getCollection("device", Device.class).withCodecRegistry(codecDeviceRegistry);
+    public void insertDevice(Device device) {
+        MongoCollection<Device> collection = db.getCollection("device", Device.class);
         collection.insertOne(device);
     }
 
+    public void insertRoom(Room room) {
+        MongoCollection<Room> collection = db.getCollection("room", Room.class);
+        collection.insertOne(room);
+    }
+
     public List<Device> getAllDevices() {
-        MongoCollection<Device> collection = db.getCollection("device", Device.class).withCodecRegistry(codecDeviceRegistry);
+        MongoCollection<Device> collection = db.getCollection("device", Device.class);
         List<Device> foundDocument = collection.find().into(new ArrayList<Device>());
+        return foundDocument;
+    }
+
+    public List<Room> getAllRooms() {
+        MongoCollection<Room> collection = db.getCollection("room", Room.class);
+        List<Room> foundDocument = collection.find().into(new ArrayList<Room>());
         return foundDocument;
     }
 }

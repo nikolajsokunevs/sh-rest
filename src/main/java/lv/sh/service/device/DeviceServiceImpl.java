@@ -1,7 +1,9 @@
-package lv.sh.service;
+package lv.sh.service.device;
 
 import lv.sh.models.Device;
 import lv.sh.repository.DeviceRepository;
+
+import java.util.List;
 
 public class DeviceServiceImpl implements IDeviceService {
 
@@ -9,13 +11,12 @@ public class DeviceServiceImpl implements IDeviceService {
 
     @Override
     public Device addDevice(Device device) {
-        deviceRepository.insert(device);
+        deviceRepository.insertDevice(device);
         return null;
     }
 
     @Override
-    public Device[] getAllDevices() {
-        deviceRepository.getAllDevices();
-        return null;
+    public List<Device> getAllDevices() {
+        return deviceRepository.getAllDevices();
     }
 }

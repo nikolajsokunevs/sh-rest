@@ -1,10 +1,10 @@
-package lv.sh.models;
+package lv.sh.repository.codecs;
 
+import lv.sh.models.Device;
 import org.bson.*;
 import org.bson.codecs.*;
 import org.bson.types.ObjectId;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class DeviceCodec implements CollectibleCodec<Device> {
@@ -60,7 +60,7 @@ public class DeviceCodec implements CollectibleCodec<Device> {
 
     public Device documentToDevice(Document document) {
         Device device = new Device();
-        device.setId(document.getString("_key"));
+        device.setId(document.getString("_id"));
         device.setDeviceName(document.getString("device_name"));
         device.setOn(document.getBoolean("on"));
         device.setPercentage(document.getDouble("percentage"));
