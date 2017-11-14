@@ -15,4 +15,6 @@ public interface IRoomService {
     public Room addRoom(Room room);
 
     public List<Room> getAllRooms();
+
+    public Room updateRoom(Room room, String id);
 }

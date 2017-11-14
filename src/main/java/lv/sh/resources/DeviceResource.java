@@ -4,10 +4,7 @@ import lv.sh.models.Device;
 import lv.sh.service.device.DeviceServiceImpl;
 import lv.sh.service.device.IDeviceService;
 
-import javax.ws.rs.GET;
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import java.util.List;
 
 @Path("device")

@@ -12,11 +12,17 @@ public class RoomServiceImpl implements IRoomService {
     @Override
     public Room addRoom(Room room) {
         deviceRepository.insertRoom(room);
-        return null;
+        return room;
     }
 
     @Override
     public List<Room> getAllRooms() {
         return deviceRepository.getAllRooms();
+    }
+
+    @Override
+    public Room updateRoom(Room room, String id) {
+        deviceRepository.updateRoom(room, id);
+        return room;
     }
 }

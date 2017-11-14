@@ -4,6 +4,7 @@ import com.mongodb.MongoClient;
 import com.mongodb.MongoClientURI;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
+import com.mongodb.client.model.Filters;
 import lv.sh.models.Device;
 import lv.sh.config.ApplicationProperties;
 import lv.sh.models.Room;
@@ -67,6 +68,12 @@ public class DeviceRepository {
 
     public void insertRoom(Room room) {
         MongoCollection<Room> collection = db.getCollection("room", Room.class);
+        collection.insertOne(room);
+    }
+
+    public void updateRoom(Room room, String id) {
+        MongoCollection<Room> collection = db.getCollection("room", Room.class);
+        collection.deleteOne(Filters.eq("_id", id));
         collection.insertOne(room);
     }
 

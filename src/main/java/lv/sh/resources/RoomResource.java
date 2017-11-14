@@ -4,14 +4,13 @@ import lv.sh.models.Room;
 import lv.sh.service.room.IRoomService;
 import lv.sh.service.room.RoomServiceImpl;
 
-import javax.ws.rs.POST;
-import javax.ws.rs.Path;
-import javax.ws.rs.Produces;
+import javax.ws.rs.*;
 import java.util.List;
 
 @Path("room")
 public class RoomResource {
 
+    @GET
     @Path("all")
     @Produces("application/json")
     public List<Room> getAll(){
@@ -22,9 +21,18 @@ public class RoomResource {
     @POST
     @Path("add")
     @Produces("application/json")
-    public String post(Room room){
+    public Room post(Room room){
         IRoomService roomService=new RoomServiceImpl();
         roomService.addRoom(room);
-        return "DONE";
+        return room;
+    }
+
+    @PUT
+    @Path("update/{param}")
+    @Produces("application/json")
+    public Room put(Room room, @PathParam("param") String id){
+        IRoomService roomService=new RoomServiceImpl();
+        roomService.updateRoom(room, id);
+        return room;
     }
 }
