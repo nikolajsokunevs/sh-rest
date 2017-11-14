@@ -30,25 +30,17 @@ public class DeviceCodec implements CollectibleCodec<Device> {
         Document document = new Document();
         String id = device.getId();
         String deviceName = device.getDeviceName();
-        String room = device.getRoom();
         String status = device.getStatus();
         Boolean on = device.isOn();
         Double percentage = device.getPercentage();
-        List<Device> relatedDevices = device.getRelatedDevices();
-        List<Document> relatedDocument = new ArrayList<>();
-        if (relatedDevices != null) {
-            for (Device current : relatedDevices) {
-                relatedDocument.add(deviceToDocument(current));
-            }
-        }
+        List<String> relatedDevices=device.getRelatedDevices();
 
         if (null != id) document.put("_id", id);
         if (null != deviceName) document.put("device_name", deviceName);
-        if (null != room) document.put("room", room);
         if (null != status) document.put("status", status);
         if (null != on) document.put("on", on);
         if (null != percentage) document.put("percentage", percentage);
-        if (null != relatedDevices) document.put("related_devices", relatedDocument);
+        if (null != relatedDevices) document.put("related_devices", relatedDevices);
         return document;
     }
 
@@ -70,18 +62,9 @@ public class DeviceCodec implements CollectibleCodec<Device> {
         Device device = new Device();
         device.setId(document.getString("_key"));
         device.setDeviceName(document.getString("device_name"));
-        device.setRoom(document.getString("room"));
         device.setOn(document.getBoolean("on"));
         device.setPercentage(document.getDouble("percentage"));
-        List<Document> documents = (List<Document>) document.get("related_devices");
-        List<Device> relatedDevices = new ArrayList<>();
-        if (documents != null) {
-            for (Document current : documents) {
-                relatedDevices.add(documentToDevice(current));
-
-            }
-        }
-        device.setRelatedDevices(relatedDevices);
+        device.setRelatedDevices((List<String>) document.get("related_devices"));
         return device;
     }
 

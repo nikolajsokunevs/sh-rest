@@ -6,11 +6,10 @@ public class Device {
 
     private String id;
     private String deviceName;
-    private String room;
     private String status;
     private boolean on;
     private double percentage;
-    private List<Device> relatedDevices;
+    private List<String> relatedDevices;
 
     public String getId() {
         return id;
@@ -30,14 +29,6 @@ public class Device {
 
     public void setDeviceName(String deviceName) {
         this.deviceName = deviceName;
-    }
-
-    public String getRoom() {
-        return room;
-    }
-
-    public void setRoom(String room) {
-        this.room = room;
     }
 
     public String getStatus() {
@@ -64,11 +55,11 @@ public class Device {
         this.percentage = percentage;
     }
 
-    public List<Device> getRelatedDevices() {
+    public List<String> getRelatedDevices() {
         return relatedDevices;
     }
 
-    public void setRelatedDevices(List<Device> relatedDevices) {
+    public void setRelatedDevices(List<String> relatedDevices) {
         this.relatedDevices = relatedDevices;
     }
 }

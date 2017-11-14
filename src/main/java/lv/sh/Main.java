@@ -30,30 +30,6 @@ public class Main {
     }
 
     public static void main(String[] args) throws IOException {
-
-        final Device in = new Device();
-        in.setId("first");
-        in.setDeviceName("first");
-
-        final Device in2 = new Device();
-        in2.setId("second");
-        in2.setDeviceName("second");
-        List<Device> list1=new ArrayList<>();
-        list1.add(in2);
-
-        in.setRelatedDevices(list1);
-
-        List<Device> list=new ArrayList<>();
-        list.add(in);
-
-        Device device=new Device();
-        device.setId("iuuh");
-        device.setPercentage(5);
-        device.setDeviceName("wetw");
-        device.setRelatedDevices(list);
-        DeviceRepository d=DeviceRepository.getInstance();
-        //d.insert(device);
-        d.getAllDevices();
         final HttpServer server = startServer();
         System.out.println(String.format("Jersey app started with WADL available at " + "%sapplication.wadl\nHit enter to stop it...", BASE_URI));
         System.in.read();
