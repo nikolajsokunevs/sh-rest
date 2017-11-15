@@ -6,12 +6,18 @@ import org.glassfish.jersey.server.ResourceConfig;
 
 import java.io.IOException;
 import java.net.URI;
+import static java.lang.String.format;
 
 public class Main {
 
-    public static final String BASE_URI = "http://localhost:8080/myapp/";
+    public static String BASE_URI = "http://localhost:%s/myapp/";
 
     public static HttpServer startServer() {
+        String webPort = System.getenv("PORT");
+        if(webPort == null || webPort.isEmpty()) {
+            webPort = "8080";
+        }
+        BASE_URI=format(BASE_URI, webPort);
         final ResourceConfig rc = new ResourceConfig().packages("lv.sh");
         return GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);
     }

@@ -1,0 +1,1 @@
+web: java -cp target/dependency/*:target/classes lv/sh/Main
