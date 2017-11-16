@@ -20,7 +20,7 @@ public class Main {
         host = Optional.ofNullable(System.getenv("HOSTNAME"));
         port = Optional.ofNullable(System.getenv("PORT"));
         path = "myapp";
-        BASE_URI = host.orElse("localhost") + ":" + port.orElse("8080") + "/" + path + "/";
+        BASE_URI = protocol + host.orElse("localhost") + ":" + port.orElse("8080") + "/" + path + "/";
     }
     public static HttpServer startServer() {
         final ResourceConfig rc = new ResourceConfig().packages("lv.sh.resources");
