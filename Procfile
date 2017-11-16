@@ -1,1 +1,1 @@
-web: java -cp target/dependency/*:target/classes lv/sh/Main
+web: java -jar target/sh-1.0-SNAPSHOT-jar-with-dependencies.jar
