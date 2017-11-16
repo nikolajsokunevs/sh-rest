@@ -16,11 +16,11 @@ public class Main {
     public static final Optional<String> port;
 
     static{
-        protocol = "https://";
+        protocol = "http://";
         host = Optional.ofNullable(System.getenv("HOSTNAME"));
         port = Optional.ofNullable(System.getenv("PORT"));
         path = "myapp";
-        BASE_URI = protocol + host.orElse("localhost") + ":" + port.orElse("8080") + "/" + path + "/";
+        BASE_URI = host.orElse("localhost") + ":" + port.orElse("8080") + "/" + path + "/";
     }
     public static HttpServer startServer() {
         final ResourceConfig rc = new ResourceConfig().packages("lv.sh.resources");

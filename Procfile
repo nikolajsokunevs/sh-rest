@@ -1,1 +1,1 @@
-web: java -jar target/sh-1.0-SNAPSHOT-jar-with-dependencies.jar
+web: mvn exec:java
