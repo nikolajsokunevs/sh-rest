@@ -1,30 +1,37 @@
 package lv.sh;
 
-import com.sun.grizzly.http.SelectorThread;
-import com.sun.jersey.api.container.grizzly.GrizzlyWebContainerFactory;
-
+import org.glassfish.grizzly.http.server.HttpServer;
+import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
+import org.glassfish.jersey.server.ResourceConfig;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.net.URI;
+import java.util.Optional;
 
 public class Main {
 
-    public static String BASE_URI = "http://localhost:" + (System.getenv("PORT") != null ? System.getenv("PORT") : "8080") + "/";
-    public static Map<String, String> initParams = new HashMap<>();
+    public static final String BASE_URI;
+    public static final String protocol;
+    public static final Optional<String> host;
+    public static final String path;
+    public static final Optional<String> port;
 
-    //   public static HttpServer startServer()  throws IOException{
-    //    initParams.put("lv.sh","resources");
-    //    SelectorThread threadSelector = GrizzlyWebContainerFactory.create(BASE_URI, initParams);
-    //   return GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);
-    // }
+    static{
+        protocol = "http://";
+        host = Optional.ofNullable(System.getenv("HOSTNAME"));
+        port = Optional.ofNullable(System.getenv("PORT"));
+        path = "myapp";
+        BASE_URI = protocol + host.orElse("localhost") + ":" + port.orElse("8080") + "/" + path + "/";
+    }
+    public static HttpServer startServer() {
+        final ResourceConfig rc = new ResourceConfig().packages("lv.sh.resources");
+        return GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);
+    }
 
     public static void main(String[] args) throws IOException {
-        initParams.put("lv.sh","resources");
-        SelectorThread threadSelector = GrizzlyWebContainerFactory.create(BASE_URI, initParams);
-
-        //final HttpServer server = startServer();
-        //System.out.println(String.format("Jersey app started with WADL available at " + "%sapplication.wadl\nHit enter to stop it...", BASE_URI));
-        //System.in.read();
-        //server.shutdown();
+        final HttpServer server = startServer();
+        System.out.println(String.format("Jersey app started with WADL available at "
+                + "%sapplication.wadl\nHit enter to stop it...", BASE_URI));
+        System.in.read();
+        server.shutdown();
     }
 }

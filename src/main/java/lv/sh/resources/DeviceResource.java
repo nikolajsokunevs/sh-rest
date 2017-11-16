@@ -1,4 +1,4 @@
-package lv.sh.resources.backoffice;
+package lv.sh.resources;
 
 import lv.sh.models.Device;
 import lv.sh.service.device.DeviceServiceImpl;
