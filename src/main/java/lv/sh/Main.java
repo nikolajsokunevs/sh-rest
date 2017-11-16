@@ -1,26 +1,30 @@
 package lv.sh;
 
-import org.glassfish.grizzly.http.server.HttpServer;
-import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
-import org.glassfish.jersey.server.ResourceConfig;
+import com.sun.grizzly.http.SelectorThread;
+import com.sun.jersey.api.container.grizzly.GrizzlyWebContainerFactory;
 
 import java.io.IOException;
-import java.net.URI;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Main {
 
-    public static String BASE_URI = "http://localhost:"+(System.getenv("PORT")!=null?System.getenv("PORT"):"8080")+"/myapp/";
+    public static String BASE_URI = "http://localhost:" + (System.getenv("PORT") != null ? System.getenv("PORT") : "8080") + "/";
+    public static Map<String, String> initParams = new HashMap<>();
 
-    public static HttpServer startServer() {
-        final ResourceConfig rc = new ResourceConfig().packages("lv.sh");
-        return GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);
-    }
+    //   public static HttpServer startServer()  throws IOException{
+    //    initParams.put("lv.sh","resources");
+    //    SelectorThread threadSelector = GrizzlyWebContainerFactory.create(BASE_URI, initParams);
+    //   return GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);
+    // }
 
     public static void main(String[] args) throws IOException {
-        final HttpServer server = startServer();
-        System.out.println(String.format("Jersey app started with WADL available at " + "%sapplication.wadl\nHit enter to stop it...", BASE_URI));
-        System.in.read();
-        server.shutdown();
+        initParams.put("lv.sh","resources");
+        SelectorThread threadSelector = GrizzlyWebContainerFactory.create(BASE_URI, initParams);
+
+        //final HttpServer server = startServer();
+        //System.out.println(String.format("Jersey app started with WADL available at " + "%sapplication.wadl\nHit enter to stop it...", BASE_URI));
+        //System.in.read();
+        //server.shutdown();
     }
 }
-
