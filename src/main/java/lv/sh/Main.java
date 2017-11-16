@@ -16,7 +16,7 @@ public class Main {
     public static final Optional<String> port;
 
     static{
-        protocol = "http://";
+        protocol = "https://";
         host = Optional.ofNullable(System.getenv("HOSTNAME"));
         port = Optional.ofNullable(System.getenv("PORT"));
         path = "myapp";
