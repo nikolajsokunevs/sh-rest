@@ -23,7 +23,7 @@ public class Main {
         BASE_URI = protocol + host.orElse("localhost") + ":" + port.orElse("8080") + "/" + path + "/";
     }
     public static HttpServer startServer() {
-        
+
         final ResourceConfig rc = new ResourceConfig().packages("lv.sh.resources");
         return GrizzlyHttpServerFactory.createHttpServer(URI.create(BASE_URI), rc);
     }
@@ -32,6 +32,7 @@ public class Main {
         final HttpServer server = startServer();
         System.out.println(String.format("Jersey app started with WADL available at "
                 + "%sapplication.wadl\nHit enter to stop it...", BASE_URI));
-        server.shutdown();
+
+        //server.shutdown();
     }
 }
