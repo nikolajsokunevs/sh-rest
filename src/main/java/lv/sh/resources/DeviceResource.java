@@ -13,9 +13,9 @@ public class DeviceResource {
     @GET
     @Path("all")
     @Produces("application/json")
-    public Device getAll(){
-      //  IDeviceService deviceService=new DeviceServiceImpl();
-        return new Device();
+    public List<Device> getAll(){
+        IDeviceService deviceService=new DeviceServiceImpl();
+        return deviceService.getAllDevices();
     }
 
     @POST
