@@ -17,7 +17,7 @@ public class Main {
 
     static{
         protocol = "http://";
-        host = Optional.ofNullable(System.getenv("127.0.0.1"));
+        host = Optional.ofNullable(System.getenv("0.0.0.0"));
         port = Optional.ofNullable(System.getenv("PORT"));
         path = "myapp";
         BASE_URI = protocol + host.orElse("localhost") + ":" + port.orElse("8080") + "/" + path + "/";
