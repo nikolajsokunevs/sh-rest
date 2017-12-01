@@ -1,6 +1,6 @@
 package lv.sh.service.device;
 
-import lv.sh.models.Device;
+import lv.sh.dto.Device;
 
 import java.util.List;
 

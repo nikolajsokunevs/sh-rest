@@ -1,6 +1,6 @@
 package lv.sh.service.room;
 
-import lv.sh.models.Room;
+import lv.sh.dto.Room;
 import lv.sh.repository.DeviceRepository;
 
 import java.util.List;

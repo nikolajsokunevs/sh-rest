@@ -1,6 +1,6 @@
-package lv.sh.resources;
+package lv.sh.resources.backoffice;
 
-import lv.sh.models.Room;
+import lv.sh.dto.Room;
 import lv.sh.service.room.IRoomService;
 import lv.sh.service.room.RoomServiceImpl;
 

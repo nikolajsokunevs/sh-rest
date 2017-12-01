@@ -1,6 +1,6 @@
-package lv.sh.resources;
+package lv.sh.resources.backoffice;
 
-import lv.sh.models.Device;
+import lv.sh.dto.Device;
 import lv.sh.service.device.DeviceServiceImpl;
 import lv.sh.service.device.IDeviceService;
 

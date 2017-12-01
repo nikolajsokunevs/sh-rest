@@ -1,6 +1,6 @@
 package lv.sh.repository.codecs;
 
-import lv.sh.models.Room;
+import lv.sh.dto.Room;
 import org.bson.*;
 import org.bson.codecs.*;
 import org.bson.types.ObjectId;

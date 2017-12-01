@@ -1,11 +1,11 @@
-package lv.sh.models;
+package lv.sh.dto;
 
 import java.util.List;
 
-public class Device {
+public class Room {
 
     private String id;
-    private String deviceName;
+    private String roomName;
     private String status;
     private boolean on;
     private double percentage;
@@ -19,16 +19,12 @@ public class Device {
         this.id = id;
     }
 
-    public void setPercentage(double percentage) {
-        this.percentage = percentage;
+    public String getRoomName() {
+        return roomName;
     }
 
-    public String getDeviceName() {
-        return deviceName;
-    }
-
-    public void setDeviceName(String deviceName) {
-        this.deviceName = deviceName;
+    public void setRoomName(String roomName) {
+        this.roomName = roomName;
     }
 
     public String getStatus() {
@@ -47,11 +43,11 @@ public class Device {
         this.on = on;
     }
 
-    public Double getPercentage() {
+    public double getPercentage() {
         return percentage;
     }
 
-    public void setPercentage(Double percentage) {
+    public void setPercentage(double percentage) {
         this.percentage = percentage;
     }
 
